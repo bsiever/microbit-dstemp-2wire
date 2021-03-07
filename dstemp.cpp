@@ -22,7 +22,7 @@
 
 
 // Enable debugging: Debugging uses #ifdefs, so uncomment or comment out 
-//#define DEBUG 1
+#define DEBUG 1
 // DEBUG uses ioPin P1 to indicate sampling of read (for timing calibration)
 using namespace pxt;
 
@@ -44,8 +44,8 @@ using namespace pxt;
 
     #define _wait_us(us)          system_timer_wait_cycles((us)==0? 1: 10*(us)) 
     #define _GPIO                   int
-    static void setToInput(_GPIO pin)     { PORT->PIN_CNF[PIN] &= 0xfffffffc; }
-    static void setToOutput(_GPIO pin)    { PORT->PIN_CNF[PIN] |= 3; }
+    static void setToInput(_GPIO pin)     { PORT->PIN_CNF[PIN] &= 0xfffffffc; PORT->PIN_CNF[PIN] = (PORT->PIN_CNF[PIN] & 0xfffffff3) | 0x0000000c; }
+    static void setToOutput(_GPIO pin)    { PORT->PIN_CNF[PIN] = (PORT->PIN_CNF[PIN] & 0xfffffff3);  PORT->PIN_CNF[PIN] |= 3; }
     static void setPinValue(_GPIO pin, int val) { if (val) PORT->OUTSET = 1 << PIN; else PORT->OUTCLR = 1 << PIN;}
     static bool getPinValue(_GPIO pin)    { return (PORT->IN & (1 << PIN)) ? 1 : 0; }
 
@@ -78,8 +78,8 @@ using namespace pxt;
     // Map to NRF library 
     #define _wait_us(us)            wait_us(((us)>5)?(us)-5:0)
     #define _GPIO                   gpio_t*
-    #define setToInput(pin)         gpio_dir((pin), PIN_INPUT)
-    #define setToOutput(pin)        gpio_dir((pin), PIN_OUTPUT)
+    #define setToInput(pin)         gpio_dir((pin), PIN_INPUT); gpio_mode((pin), PinMode::PullUp);
+    #define setToOutput(pin)        gpio_mode((pin), PinMode::PullNone); gpio_dir((pin), PIN_OUTPUT); 
     #define setPinValue(pin, val)   gpio_write((pin), (val))
     #define getPinValue(pin)        gpio_read((pin))
 #endif
@@ -135,6 +135,7 @@ namespace dstemp {
 
     const int MAX_TRIES = 3;      // Max tries to attempt conversion before fail 
 
+    const int CONVERSION_TIME_US = 800000; // Conversion time for 12-bit
     // ************* State variables 
     int errorObjectIdx = 0;
     int errorPort = 0;
@@ -203,8 +204,9 @@ namespace dstemp {
         // Write: Function command - Convert 44h 
         writeByte(ioPin, 0x44, false);
 
+        return true;
         // Read Time Slot
-        return readBit(ioPin)==0;
+       // return readBit(ioPin)==0;
     }
 
 
@@ -351,21 +353,7 @@ namespace dstemp {
         }
 
         // 2. Wait for conversion to complete 
-        success = false;
-        for(int maxIterations = 20; maxIterations>0; maxIterations--) {
-            if(readBit(gpio) == 0) {
-                success = true;
-                break;
-            } else {
-                // Wait for conversion to complete. 
-                uBit.sleep(0);
-            }
-        }
-        // If not successful, error
-        if(success==false) {
-            error(4, pin);
-            goto return_error;
-        }
+        _wait_us(CONVERSION_TIME_US);
 
         // 3. Retrieve Data 
         for(int tries=0;tries<MAX_TRIES;tries++) {
@@ -383,7 +371,8 @@ namespace dstemp {
                     errorObjectIdx = 0;
                     errorPort = pin;
                     // Return to input
-                    setToInput(gpio);
+                    setToOutput(gpio);
+                    setPinValue(gpio, 1);
                     return temp;
                 }
             }
@@ -392,7 +381,8 @@ namespace dstemp {
         error(3, pin);
 return_error:
         // Return to input
-        setToInput(gpio);
+        setToOutput(gpio);
+        setPinValue(gpio, 1);
         // Return special sentinel value
         return ERROR_SENTINEL;
     }
@@ -447,7 +437,6 @@ return_error:
         // Time sensitive delay
         _wait_us(one ? TIME_ONE_LOW : TIME_ZERO_LOW);
         // Restore the bus
-        setToInput(ioPin);
         setPinValue(ioPin, 1);
     
         // Wait out rest of slot 
@@ -504,12 +493,14 @@ return_error:
         } while(maxCounts-->0);
 
         // Switch back to output
+        setToOutput(ioPin);
         setPinValue(ioPin,1);
 
 #ifdef DEBUG       
         setPinValue(indicatePin, 0);
 #endif 
-
+        // Break between bits...
+        _wait_us(100);
         return b; 
     }
 
@@ -571,7 +562,6 @@ return_error:
 
         // Return pin to input for presence detection 
         setPinValue(ioPin, 1);
-        setToInput(ioPin);
         _wait_us(TIME_POST_RESET_TO_DETECT);
 
 #if MICROBIT_CODAL
@@ -587,6 +577,7 @@ return_error:
 #ifdef DEBUG
         setPinValue(indicatePin,1);
 #endif
+        setToInput(ioPin);
         bool presence = false;        
         do {
             presence = presence || (getPinValue(ioPin) == 0);
@@ -597,6 +588,7 @@ return_error:
         setPinValue(indicatePin,0);
 #endif
         bool release = getPinValue(ioPin)==1;
+        setToOutput(ioPin);
 
         // Success if the pin was pulled low and went high again
         bool success = presence && release;
