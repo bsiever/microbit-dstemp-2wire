@@ -1,5 +1,5 @@
 {
-    "name": "microbit-dstemp",
+    "name": "microbit-dstemp-2wire",
     "version": "0.1.00",
     "description": "Dallas/Maxim DS18B20 Temperature Probe; 2-Wire (Parasitic Power)",
     "license": "MIT",
