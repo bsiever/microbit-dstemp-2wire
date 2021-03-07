@@ -1,7 +1,7 @@
 {
     "dstemp": {
         "visual": {
-            "image": "parts/ds18b20probe_2Wire.svg",
+            "image": "parts/ds18b20probe2Wire.svg",
             "width": 54,
             "height": 20,
             "pinDistance": 3,

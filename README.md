@@ -1,7 +1,7 @@
 # dstemp
 
 ```package
-dstemp=github:bsiever/microbit-dstemp-2wire
+microbit-dstemp-2wire=github:bsiever/microbit-dstemp-2wire
 ```
 
 This extension allows the micro:bit to use the Dallas Semiconductor DS18B20 temperature sensor with just two wires (parasite power mode).
