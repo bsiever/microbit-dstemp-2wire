@@ -27,6 +27,8 @@ You can assemble your own alligator clip version of the sensor quite easily with
 
 ## Building a sensor assembly
 
+You can build a sensor assembly that easily clips on to the micro:bit cheaply (under about $7 U.S.) and quickly (under 15 minutes)
+
 1. Assemble the materials (sensor, alligator clips (black and white preferred), wire cutters or utility knife, and tape):<br />![](./docs/static/1_Parts.jpg)
 2. Strip approximately 1 inch of insulation from the three wires on the sensor:<br />![](./docs/static/2_StripAndTwistSensorWires.jpg)<br /> 
    1. You can gently "roll" the wire under the blade of the utility knife to cut the insulation and then pull it off.  Be careful not to apply too much pressure or you'll cut the wires too!
