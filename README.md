@@ -23,8 +23,19 @@ Common wiring is:
 - Micro:bit GND to GND (black wire) and Vdd (red wire) of the sensor
 - Micro:bit I/O pin, like `||P0||`, to the data in/out (white wire) of the sensor
 
+You can assemble your own alligator clip version of the sensor quite easily with: 1) (authentic) DS18B20, 2) 1-2 Alligator clips, 3) Wire cutters or utility knife, and 4) Tape (electrical taper preferred)
 
-You can assemble your own aligator clip version of the sensor quite easily with: 1) DS18B20, 2) 1-2 Aligator clips, 3) Wire cutters or utility knife, and 4) Tape (electrical taper preferred)
+## Building a sensor assembly
+
+1. Assemble the materials (sensor, alligator clips (black and white preferred), wire cutters or utility knife, and tape):<br />![./docs/static/1_Parts.jpg]
+2. Strip approximately 1 inch of insulation from the three wires on the sensor:<br />![./docs/static/2_StripAndTwistSensorWires.jpg]<br /> 
+   1. You can gently "roll" the wire under the blade of the utility knife to cut the insulation and then pull it off.  Be careful not to apply too much pressure or you'll cut the wires too!
+   2. Twist together the red and black wires.
+3. Cut the alligator clips into two. Strip approximately 1 inch of insulation from the ends of two clips of different color.<br />![./docs/static/3_CutAndStripClips.jpg]
+4. Twist together the sensor's red/black wires with the black alligator clip.  Twist the sensor's white wire with the white alligator clip. <br />![./docs/static/4_TwistClipsAndSensorWires.jpg]
+5. Fold back the black/red wires to double them up with the larger cable on the sensor and then wrap them in electrical tape to cover all exposed wire. <br />![./docs/static/5_FoldBackBlackAndTape.jpg] 
+6. Now fold back the white wires and also wrap them in tape.<br />![./docs/static/6_FoldBackWhiteAndTape.jpg]
+
 
 
 # Getting the Temperature
