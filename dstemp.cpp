@@ -2,6 +2,7 @@
 * Bill Siever
 * 2018-10-10
 * 2021-02-27 CODAL and V2 updates
+* 2021-03-06 Parasitic power support
 *
 * Development environment specifics:
 * Written in Microsoft PXT
