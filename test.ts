@@ -22,3 +22,9 @@ dstemp.sensorError(function (ErrorMessage, ErrorCode, Port) {
 //    basic.showNumber(ErrorCode)
 })
 
+basic.forever(function () {
+    serial.writeString("temp = ")
+    serial.writeNumber(dstemp.celsius(DigitalPin.P0))
+    serial.writeString("\n")
+    basic.pause(500)
+})

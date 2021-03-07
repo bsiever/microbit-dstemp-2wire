@@ -23,7 +23,7 @@
 
 
 // Enable debugging: Debugging uses #ifdefs, so uncomment or comment out 
-#define DEBUG 1
+//#define DEBUG 1
 // DEBUG uses ioPin P1 to indicate sampling of read (for timing calibration)
 using namespace pxt;
 
@@ -79,8 +79,8 @@ using namespace pxt;
     // Map to NRF library 
     #define _wait_us(us)            wait_us(((us)>5)?(us)-5:0)
     #define _GPIO                   gpio_t*
-    #define setToInput(pin)         gpio_dir((pin), PIN_INPUT); gpio_mode((pin), PinMode::PullUp);
-    #define setToOutput(pin)        gpio_mode((pin), PinMode::PullNone); gpio_dir((pin), PIN_OUTPUT); 
+    #define setToInput(_pin)        { NRF_GPIO->PIN_CNF[_pin->pin] = 0xC; }
+    #define setToOutput(_pin)       { NRF_GPIO->PIN_CNF[_pin->pin] = 0x1; }
     #define setPinValue(pin, val)   gpio_write((pin), (val))
     #define getPinValue(pin)        gpio_read((pin))
 #endif
