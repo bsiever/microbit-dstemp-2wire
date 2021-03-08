@@ -27,7 +27,7 @@ You can assemble your own alligator clip version of the sensor quite easily with
 
 ## Building a sensor assembly
 
-You can build a sensor assembly that easily clips on to the micro:bit cheaply (under about $7 U.S.) and quickly (under 15 minutes)
+You can build a sensor assembly that easily clips on to the micro:bit cheaply (under about $7 U.S.) and quickly (under 15 minutes).
 
 1. Assemble the materials (sensor, alligator clips (black and white preferred), wire cutters or utility knife, and tape):<br />![](./docs/static/1_Parts.jpg)
 2. Strip approximately 1 inch of insulation from the three wires on the sensor:<br />![](./docs/static/2_StripAndTwistSensorWires.jpg)<br /> 
@@ -37,6 +37,8 @@ You can build a sensor assembly that easily clips on to the micro:bit cheaply (u
 4. Twist together the sensor's red/black wires with the black alligator clip.  Twist the sensor's white wire with the white alligator clip. <br />![](./docs/static/4_TwistClipsAndSensorWires.jpg)
 5. Fold back the black/red wires to double them up with the larger cable on the sensor and then wrap them in electrical tape to cover all exposed wire. <br />![](./docs/static/5_FoldBackBlackAndTape.jpg)
 6. Now fold back the white wires and also wrap them in tape.<br />![](./docs/static/6_FoldBackWhiteAndTape.jpg)
+
+A completed module looks like:<br />![](./docs/static/7_Final.jpg)
 
 The sensor's red/black wire (here connected to a black clip wire) should be connected to the `GND` on the micro:bit. The Sensor's other wire (probably white and connected to the white clip wire here) should be connected to an I/O pin on the micro:bit, like `||P0||'.
 
