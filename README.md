@@ -1,4 +1,4 @@
-# dstemp
+# dstemp2wire
 
 
 This extension allows the micro:bit to use the Dallas Semiconductor DS18B20 temperature sensor with just two wires (parasitic power mode).
@@ -42,7 +42,7 @@ The sensor's red/black wire (here connected to a black clip wire) should be conn
 # Getting the Temperature
 
 ```sig
-dstemp.celsius(pin: DigitalPin) : number 
+dstemp2wire.celsius(pin: DigitalPin) : number 
 ```
 
 Get the current temperature in Celsius.  Returns `-Infinity` on error.
@@ -50,7 +50,7 @@ Get the current temperature in Celsius.  Returns `-Infinity` on error.
 
 
 ```sig
-dstemp.sensorError(errCallback: (ErrorMessage: string, ErrorCode: number, Port: number) => void) { 
+dstemp2wire.sensorError(errCallback: (ErrorMessage: string, ErrorCode: number, Port: number) => void) { 
 ```
 
 Report on any errors
@@ -64,7 +64,7 @@ Report on any errors
 It's best to capture the temperature in a variable and only use it if the value isn't `-Infinity`.  Since -300 C is below absolute zero, ensuring the temperature is over -300 is sufficient.  For example:
 
 ```block
-temp = dstemp.celsius(DigitalPin.P0)
+temp = dstemp2wire.celsius(DigitalPin.P0)
 if (temp > -300) {
     basic.showString("" + (temp))
 }

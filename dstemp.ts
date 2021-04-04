@@ -14,7 +14,7 @@ namespace dstemp2wire {
 
     //% blockId="celsius" block="Temp. in Celsius on %pin|"
     //% shim=dstemp2wire::celsius
-    //% parts=dstemp trackArgs=0
+    //% parts=dstemp2wire trackArgs=0
     export function celsius(pin: DigitalPin) : number {
         return 32.6;
     }

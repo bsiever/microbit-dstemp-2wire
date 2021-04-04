@@ -13,7 +13,7 @@
         "numberOfPins": 2,
         "instantiation": {
             "kind": "function",
-            "fullyQualifiedName": "dstemp.celsius",
+            "fullyQualifiedName": "dstemp2wire.celsius",
             "argumentRoles": [{
                     "pinInstantiationIdx": 0
                 }]
