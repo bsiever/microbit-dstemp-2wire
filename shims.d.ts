@@ -6,6 +6,7 @@
      * 2018-10-10
      * 2021-02-27 CODAL and V2 updates
      * 2021-03-06 Parasitic power support
+     * 2021-04-04 Changed namespaces
      *
      * Development environment specifics:
      * Written in Microsoft PXT
@@ -17,7 +18,7 @@
      * Distributed as-is; no warranty is given.
      */
 
-declare namespace dstemp {
+declare namespace dstemp2wire {
 }
 
 // Auto-generated. Do not edit. Really.

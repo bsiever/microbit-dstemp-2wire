@@ -1,7 +1,7 @@
  //% color=#0000FF 
 //% icon="\uf2c8"
-//% block="DS Temp"
-namespace dstemp {
+//% block="DS Temp 2-Wire"
+namespace dstemp2wire {
     //% whenUsed
     let errorHandler:Action = null;
     //% whenUsed
