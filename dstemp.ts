@@ -13,26 +13,26 @@ namespace dstemp2wire {
     const errorMsgs  = [ "No Error", "Not Connected", "Start Error", "Read Timeout", "Conversion Failure"];
 
     //% blockId="celsius" block="Temp. in Celsius on %pin|"
-    //% shim=dstemp::celsius
+    //% shim=dstemp2wire::celsius
     //% parts=dstemp trackArgs=0
     export function celsius(pin: DigitalPin) : number {
         return 32.6;
     }
 
     // Helper function
-    //% shim=dstemp::setErrorHandler
+    //% shim=dstemp2wire::setErrorHandler
     export function setErrorHandler(a: Action) {
         errorHandler = a; 
     }
 
     // Helper function
-    //% shim=dstemp::getErrorObjectIdx
+    //% shim=dstemp2wire::getErrorObjectIdx
     export function getErrorObjectIdx() : number {
         return errorObjectIdx;
     }
 
     // Helper function
-    //% shim=dstemp::getErrorPort
+    //% shim=dstemp2wire::getErrorPort
     export function getErrorPort() : number {
         return errorPort;
     }

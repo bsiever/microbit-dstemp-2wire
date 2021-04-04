@@ -5,12 +5,12 @@ serial.writeLine("If sensor is NOT connected it should show -Infinity (for temp)
 
 input.onButtonPressed(Button.A, function () {
     serial.writeString("temp = ")
-    serial.writeNumber(dstemp.celsius(DigitalPin.P0))
+    serial.writeNumber(dstemp2wire.celsius(DigitalPin.P0))
     serial.writeString("\n")
-//      basic.showNumber(dstemp.celsius(DigitalPin.P0))
+//      basic.showNumber(dstemp2wire.celsius(DigitalPin.P0))
 })
 
-dstemp.sensorError(function (ErrorMessage, ErrorCode, Port) {
+dstemp2wire.sensorError(function (ErrorMessage, ErrorCode, Port) {
     serial.writeString("\n");
     serial.writeString(ErrorMessage);
     serial.writeString(" code=");
@@ -24,7 +24,7 @@ dstemp.sensorError(function (ErrorMessage, ErrorCode, Port) {
 
 basic.forever(function () {
     serial.writeString("temp = ")
-    serial.writeNumber(dstemp.celsius(DigitalPin.P0))
+    serial.writeNumber(dstemp2wire.celsius(DigitalPin.P0))
     serial.writeString("\n")
     basic.pause(500)
 })
