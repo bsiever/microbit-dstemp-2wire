@@ -26,16 +26,16 @@ You can assemble your own alligator clip version of the sensor quite easily with
 
 You can build a sensor assembly that easily clips on to the micro:bit cheaply (under about $7 U.S.) and quickly (under 15 minutes).
 
-1. Assemble the materials (sensor, alligator clips (black and white preferred), wire cutters or utility knife, and tape):<br />![](./docs/static/1_Parts.jpg)
-2. Strip approximately 1 inch of insulation from the three wires on the sensor:<br />![](./docs/static/2_StripAndTwistSensorWires.jpg)<br /> 
+1. Assemble the materials (sensor, alligator clips (black and white preferred), wire cutters or utility knife, and tape):<br />![](https://raw.githubusercontent.com/bsiever/microbit-dstemp-2wire/master/docs/static/1_Parts.jpg)
+2. Strip approximately 1 inch of insulation from the three wires on the sensor:<br />![](https://raw.githubusercontent.com/bsiever/microbit-dstemp-2wire/master/docs/static/2_StripAndTwistSensorWires.jpg)<br /> 
    1. You can gently "roll" the wire under the blade of the utility knife to cut the insulation and then pull it off.  Be careful not to apply too much pressure or you'll cut the wires too!
    2. Twist together the red and black wires.
-3. Cut the alligator clips into two. Strip approximately 1 inch of insulation from the ends of two clips of different color.<br />![](./docs/static/3_CutAndStripClips.jpg)
-4. Twist together the sensor's red/black wires with the black alligator clip.  Twist the sensor's white wire with the white alligator clip. <br />![](./docs/static/4_TwistClipsAndSensorWires.jpg)
-5. Fold back the black/red wires to double them up with the larger cable on the sensor and then wrap them in electrical tape to cover all exposed wire. <br />![](./docs/static/5_FoldBackBlackAndTape.jpg)
+3. Cut the alligator clips into two. Strip approximately 1 inch of insulation from the ends of two clips of different color.<br />![](https://raw.githubusercontent.com/bsiever/microbit-dstemp-2wire/master/docs/static/3_CutAndStripClips.jpg)
+4. Twist together the sensor's red/black wires with the black alligator clip.  Twist the sensor's white wire with the white alligator clip. <br />![](https://raw.githubusercontent.com/bsiever/microbit-dstemp-2wire/master/docs/static/4_TwistClipsAndSensorWires.jpg)
+5. Fold back the black/red wires to double them up with the larger cable on the sensor and then wrap them in electrical tape to cover all exposed wire. <br />![](https://raw.githubusercontent.com/bsiever/microbit-dstemp-2wire/master/docs/static/5_FoldBackBlackAndTape.jpg)
 6. Now fold back the white wires and also wrap them in tape.<br />![](./docs/static/6_FoldBackWhiteAndTape.jpg)
 
-A completed module looks like:<br />![](./docs/static/7_Final.jpg)
+A completed module looks like:<br />![](https://raw.githubusercontent.com/bsiever/microbit-dstemp-2wire/master/docs/static/7_Final.jpg)
 
 The sensor's red/black wire (here connected to a black clip wire) should be connected to the `GND` on the micro:bit. The Sensor's other wire (probably white and connected to the white clip wire here) should be connected to an I/O pin on the micro:bit, like `||P0||'.
 
@@ -50,14 +50,14 @@ Get the current temperature in Celsius.  Returns `-Infinity` on error.
 
 
 ```sig
-dstemp2wire.sensorError(errCallback: (ErrorMessage: string, ErrorCode: number, Port: number) => void) { 
+dstemp2wire.sensorError(errCallback: (errorMessage: string, errorCode: number, port: number) => void) { 
 ```
 
 Report on any errors
 
-- `ErrorMessage` will be a string describing the error
-- `ErrorCode` will be a numeric code
-- `Port` will indicate which specific port encountered the error (if multiple sensors are connected)
+- `||errorMessage||` will be a string describing the error
+- `||errorCode||` will be a numeric code
+- `||port||` will indicate which specific port encountered the error (if multiple sensors are connected)
 
 # Recommended usage
 

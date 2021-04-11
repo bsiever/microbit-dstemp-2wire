@@ -12,7 +12,7 @@ namespace dstemp2wire {
     // TODO: Localization
     const errorMsgs  = [ "No Error", "Not Connected", "Start Error", "Read Timeout", "Conversion Failure"];
 
-    //% blockId="celsius" block="Temp. in Celsius on %pin|"
+    //% blockId="celsius" block="temperature (\u00B0\\C) on %pin|"
     //% shim=dstemp2wire::celsius
     //% parts=dstemp2wire trackArgs=0
     export function celsius(pin: DigitalPin) : number {
@@ -20,7 +20,7 @@ namespace dstemp2wire {
     }
 
     // Helper function
-    //% shim=dstemp2wire::setErrorHandler
+    //% shim=dstemp2wire::setErrorHandler 
     export function setErrorHandler(a: Action) {
         errorHandler = a; 
     }
@@ -41,9 +41,9 @@ namespace dstemp2wire {
      * Set a handler for errors 
      * @param errCallback The error handler 
      */
-    //% blockId="error" block="Temp. Sensor Error"
-    //% draggableParameters="reporter"
-    export function sensorError(errCallback: (ErrorMessage: string, ErrorCode: number, Port: number) => void) { 
+    //% blockId="error" block="temperature sensor error"
+    //% draggableParameters="reporter" weight=0
+    export function sensorError(errCallback: (errorMessage: string, errorCode: number, port: number) => void) { 
         if(errCallback) {
             errorHandler = () => {
                 let i  = getErrorObjectIdx(); 
