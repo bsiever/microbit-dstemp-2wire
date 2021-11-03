@@ -44,7 +44,7 @@ using namespace pxt;
     #define NUM_PINS 32
 #endif
 
-    #define _wait_us(us)          system_timer_wait_cycles((us)==0? 1: 10*(us)) 
+    #define _wait_us(us)          system_timer_wait_cycles((us)==0? 1: 11*(us)) 
     #define _GPIO                   int
     static void setToInput(_GPIO pin)     { PORT->PIN_CNF[PIN] &= 0xfffffffc; PORT->PIN_CNF[PIN] = (PORT->PIN_CNF[PIN] & 0xfffffff3) | 0x0000000c; }
     static void setToOutput(_GPIO pin)    { PORT->PIN_CNF[PIN] = (PORT->PIN_CNF[PIN] & 0xfffffff3);  PORT->PIN_CNF[PIN] |= 3; }
@@ -469,7 +469,7 @@ return_error:
  
         // Start the transaction 
         setPinValue(ioPin, 0);
-        _wait_us(0);
+        _wait_us(1);
         setPinValue(ioPin, 1);
         setToInput(ioPin);
 
