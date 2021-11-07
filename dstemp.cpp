@@ -44,7 +44,7 @@ using namespace pxt;
     #define NUM_PINS 32
 #endif
 
-    #define _wait_us(us)          system_timer_wait_cycles((us)==0? 1: 11*(us)) 
+    #define _wait_us(us)          system_timer_wait_cycles((us)==0? 1: (((500L*(us))/47L))) // Adjusted to 11
     #define _GPIO                   int
     static void setToInput(_GPIO pin)     { PORT->PIN_CNF[PIN] &= 0xfffffffc; PORT->PIN_CNF[PIN] = (PORT->PIN_CNF[PIN] & 0xfffffff3) | 0x0000000c; }
     static void setToOutput(_GPIO pin)    { PORT->PIN_CNF[PIN] = (PORT->PIN_CNF[PIN] & 0xfffffff3);  PORT->PIN_CNF[PIN] |= 3; }
@@ -72,6 +72,9 @@ using namespace pxt;
             // Restart it
             timer->TASKS_START = 1;
             NVIC_EnableIRQ(TIMER1_IRQn);
+
+            // Call timer calibration
+            system_timer_calibrate_cycles();
         }
     }
 
