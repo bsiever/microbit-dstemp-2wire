@@ -295,7 +295,10 @@ namespace dstemp2wire {
 #if MICROBIT_CODAL
         // CODAL may not be using external crystal by default; Update it
         // May also be using 24-bit timer
-        configTimer();
+#ifdef SOFTDEVICE_PRESENT
+        if (!ble_running()) // Only configTimer if either no soft-dev or no ble
+#endif
+            configTimer();
 #endif
         // Get corresponding I/O ioPin Object
         MicroBitPin *mbp = getPin(pin);  // This returns a "uBit.io.P0" type thing
